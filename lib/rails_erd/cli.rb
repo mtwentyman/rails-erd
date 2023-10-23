@@ -164,7 +164,8 @@ module RailsERD
 
     def initialize(path, options)
       @path, @options = path, options
-      require "rails_erd/diagram/graphviz" if options.generator == :graphviz
+      require "rails_erd/diagram/graphviz" if options.generator == 'graphviz'
+      require "rails_erd/diagram/mermaid"  if options.generator == 'mermaid'
     end
 
     def start
@@ -202,7 +203,7 @@ module RailsERD
     end
 
     def generator
-      if options.generator == :mermaid
+      if options.generator == 'mermaid'
         RailsERD::Diagram::Mermaid
       else
         RailsERD::Diagram::Graphviz
